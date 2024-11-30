@@ -151,6 +151,8 @@ namespace LibraryManagement.Model
 		
 		private decimal _Price;
 		
+		private System.Nullable<bool> _IsDeleted;
+		
 		private EntitySet<RentalSlipDetail> _RentalSlipDetails;
 		
 		private EntityRef<Shelf> _Shelf;
@@ -175,6 +177,8 @@ namespace LibraryManagement.Model
     partial void OnQuantityChanged();
     partial void OnPriceChanging(decimal value);
     partial void OnPriceChanged();
+    partial void OnIsDeletedChanging(System.Nullable<bool> value);
+    partial void OnIsDeletedChanged();
     #endregion
 		
 		public Book()
@@ -348,6 +352,26 @@ namespace LibraryManagement.Model
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
+		public System.Nullable<bool> IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this.OnIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeleted = value;
+					this.SendPropertyChanged("IsDeleted");
+					this.OnIsDeletedChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_RentalSlipDetail", Storage="_RentalSlipDetails", ThisKey="BookID", OtherKey="BookID")]
 		public EntitySet<RentalSlipDetail> RentalSlipDetails
 		{
@@ -450,6 +474,8 @@ namespace LibraryManagement.Model
 		
 		private System.DateTime _StartDate;
 		
+		private System.Nullable<bool> _IsDeleted;
+		
 		private EntitySet<RentalSlip> _RentalSlips;
 		
     #region Extensibility Method Definitions
@@ -472,6 +498,8 @@ namespace LibraryManagement.Model
     partial void OnCitizenIdentificationChanged();
     partial void OnStartDateChanging(System.DateTime value);
     partial void OnStartDateChanged();
+    partial void OnIsDeletedChanging(System.Nullable<bool> value);
+    partial void OnIsDeletedChanged();
     #endregion
 		
 		public Customer()
@@ -636,6 +664,26 @@ namespace LibraryManagement.Model
 					this._StartDate = value;
 					this.SendPropertyChanged("StartDate");
 					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
+		public System.Nullable<bool> IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this.OnIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeleted = value;
+					this.SendPropertyChanged("IsDeleted");
+					this.OnIsDeletedChanged();
 				}
 			}
 		}
@@ -1235,6 +1283,8 @@ namespace LibraryManagement.Model
 		
 		private string _ShelfName;
 		
+		private System.Nullable<bool> _IsDeleted;
+		
 		private EntitySet<Book> _Books;
 		
     #region Extensibility Method Definitions
@@ -1245,6 +1295,8 @@ namespace LibraryManagement.Model
     partial void OnShelfIDChanged();
     partial void OnShelfNameChanging(string value);
     partial void OnShelfNameChanged();
+    partial void OnIsDeletedChanging(System.Nullable<bool> value);
+    partial void OnIsDeletedChanged();
     #endregion
 		
 		public Shelf()
@@ -1289,6 +1341,26 @@ namespace LibraryManagement.Model
 					this._ShelfName = value;
 					this.SendPropertyChanged("ShelfName");
 					this.OnShelfNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
+		public System.Nullable<bool> IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this.OnIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeleted = value;
+					this.SendPropertyChanged("IsDeleted");
+					this.OnIsDeletedChanged();
 				}
 			}
 		}
@@ -1365,6 +1437,8 @@ namespace LibraryManagement.Model
 		
 		private string _Role;
 		
+		private System.Nullable<bool> _IsDeleted;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1389,6 +1463,8 @@ namespace LibraryManagement.Model
     partial void OnCitizenIdentificationChanged();
     partial void OnRoleChanging(string value);
     partial void OnRoleChanged();
+    partial void OnIsDeletedChanging(System.Nullable<bool> value);
+    partial void OnIsDeletedChanged();
     #endregion
 		
 		public User()
@@ -1592,6 +1668,26 @@ namespace LibraryManagement.Model
 					this._Role = value;
 					this.SendPropertyChanged("Role");
 					this.OnRoleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
+		public System.Nullable<bool> IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this.OnIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeleted = value;
+					this.SendPropertyChanged("IsDeleted");
+					this.OnIsDeletedChanged();
 				}
 			}
 		}
