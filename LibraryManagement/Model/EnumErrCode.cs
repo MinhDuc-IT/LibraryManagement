@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Model
 {
-    class EnumErrCode
+    enum EnumErrCode
     {
+        Error = -1,
+        Empty = 0,
+        Success = 1,
+        InvalidInput = 2
     }
 }
