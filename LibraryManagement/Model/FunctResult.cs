@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Model
 {
-    class FunctionResult<T>
+    class FunctResult<T>
     {
         public EnumErrCode ErrCode { get; set; }
         public string ErrDesc { get; set; }
