@@ -22,29 +22,9 @@ namespace LibraryManagement
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void FormSearchBook_Load(object sender, EventArgs e)
         {
             btnReset_Click(sender, e);
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -112,11 +92,6 @@ namespace LibraryManagement
                 })
                 .ToList();
             dgvBookList.DataSource = items;
-        }
-
-        private void dgvBookList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
