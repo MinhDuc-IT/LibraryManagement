@@ -54,10 +54,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSearchBook.cs">
+    <Compile Include="View\FormSearchBook.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSearchBook.Designer.cs">
+    <Compile Include="View\FormSearchBook.Designer.cs">
       <DependentUpon>FormSearchBook.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\EnumErrCode.cs" />
@@ -69,7 +69,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormSearchBook.resx">
+    <EmbeddedResource Include="View\FormSearchBook.resx">
       <DependentUpon>FormSearchBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -102,9 +102,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>

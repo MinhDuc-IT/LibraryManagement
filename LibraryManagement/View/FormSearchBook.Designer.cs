@@ -40,10 +40,10 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(265, 83);
+            this.txtSearch.Location = new System.Drawing.Point(211, 83);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(300, 36);
+            this.txtSearch.Size = new System.Drawing.Size(354, 36);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
@@ -51,7 +51,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(277, 24);
+            this.label1.Location = new System.Drawing.Point(223, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(236, 39);
             this.label1.TabIndex = 4;
@@ -84,7 +84,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(96, 86);
+            this.label2.Location = new System.Drawing.Point(42, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(163, 29);
             this.label2.TabIndex = 7;
@@ -113,7 +113,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSearch);
             this.Name = "FormSearchBook";
-            this.Text = "Form2";
+            this.Text = "FormSearchBook";
             this.Load += new System.EventHandler(this.FormSearchBook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookList)).EndInit();
             this.ResumeLayout(false);
