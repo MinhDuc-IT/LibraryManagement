@@ -87,7 +87,6 @@ namespace LibraryManagement
             this.splitContainer1.Panel1.Controls.Add(this.txt_ID_Cus);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -96,7 +95,6 @@ namespace LibraryManagement
             this.splitContainer1.Size = new System.Drawing.Size(804, 601);
             this.splitContainer1.SplitterDistance = 268;
             this.splitContainer1.TabIndex = 0;
-            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // dateTime_startdate
             // 
@@ -105,7 +103,7 @@ namespace LibraryManagement
             this.dateTime_startdate.Location = new System.Drawing.Point(23, 384);
             this.dateTime_startdate.Name = "dateTime_startdate";
             this.dateTime_startdate.Size = new System.Drawing.Size(225, 22);
-            this.dateTime_startdate.TabIndex = 23;
+            this.dateTime_startdate.TabIndex = 7;
             // 
             // txt_gender
             // 
@@ -119,8 +117,7 @@ namespace LibraryManagement
             this.txt_gender.Location = new System.Drawing.Point(26, 155);
             this.txt_gender.Name = "txt_gender";
             this.txt_gender.Size = new System.Drawing.Size(225, 24);
-            this.txt_gender.TabIndex = 22;
-            this.txt_gender.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.txt_gender.TabIndex = 2;
             // 
             // dateTime_dob
             // 
@@ -129,7 +126,7 @@ namespace LibraryManagement
             this.dateTime_dob.Location = new System.Drawing.Point(26, 200);
             this.dateTime_dob.Name = "dateTime_dob";
             this.dateTime_dob.Size = new System.Drawing.Size(225, 22);
-            this.dateTime_dob.TabIndex = 21;
+            this.dateTime_dob.TabIndex = 3;
             // 
             // btn_sua
             // 
@@ -137,7 +134,7 @@ namespace LibraryManagement
             this.btn_sua.Location = new System.Drawing.Point(145, 511);
             this.btn_sua.Name = "btn_sua";
             this.btn_sua.Size = new System.Drawing.Size(103, 36);
-            this.btn_sua.TabIndex = 20;
+            this.btn_sua.TabIndex = 9;
             this.btn_sua.Text = "Sửa";
             this.btn_sua.UseVisualStyleBackColor = true;
             this.btn_sua.Visible = false;
@@ -149,7 +146,7 @@ namespace LibraryManagement
             this.btn_xoa.Location = new System.Drawing.Point(145, 473);
             this.btn_xoa.Name = "btn_xoa";
             this.btn_xoa.Size = new System.Drawing.Size(103, 32);
-            this.btn_xoa.TabIndex = 19;
+            this.btn_xoa.TabIndex = 10;
             this.btn_xoa.Text = "Xóa";
             this.btn_xoa.UseVisualStyleBackColor = true;
             this.btn_xoa.Visible = false;
@@ -161,7 +158,7 @@ namespace LibraryManagement
             this.btn_them.Location = new System.Drawing.Point(145, 553);
             this.btn_them.Name = "btn_them";
             this.btn_them.Size = new System.Drawing.Size(103, 36);
-            this.btn_them.TabIndex = 18;
+            this.btn_them.TabIndex = 8;
             this.btn_them.Text = "Thêm mới ";
             this.btn_them.UseVisualStyleBackColor = true;
             this.btn_them.Click += new System.EventHandler(this.btn_them_Click);
@@ -210,7 +207,6 @@ namespace LibraryManagement
             this.label5.Size = new System.Drawing.Size(74, 16);
             this.label5.TabIndex = 13;
             this.label5.Text = "Day of birth";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
@@ -228,7 +224,7 @@ namespace LibraryManagement
             this.txt_cccd.Location = new System.Drawing.Point(26, 340);
             this.txt_cccd.Name = "txt_cccd";
             this.txt_cccd.Size = new System.Drawing.Size(225, 22);
-            this.txt_cccd.TabIndex = 9;
+            this.txt_cccd.TabIndex = 6;
             // 
             // txt_phone
             // 
@@ -237,7 +233,7 @@ namespace LibraryManagement
             this.txt_phone.Location = new System.Drawing.Point(26, 291);
             this.txt_phone.Name = "txt_phone";
             this.txt_phone.Size = new System.Drawing.Size(225, 22);
-            this.txt_phone.TabIndex = 8;
+            this.txt_phone.TabIndex = 5;
             // 
             // txt_address
             // 
@@ -246,7 +242,7 @@ namespace LibraryManagement
             this.txt_address.Location = new System.Drawing.Point(28, 243);
             this.txt_address.Name = "txt_address";
             this.txt_address.Size = new System.Drawing.Size(223, 22);
-            this.txt_address.TabIndex = 7;
+            this.txt_address.TabIndex = 4;
             // 
             // txt_Name_Cus
             // 
@@ -255,7 +251,7 @@ namespace LibraryManagement
             this.txt_Name_Cus.Location = new System.Drawing.Point(26, 111);
             this.txt_Name_Cus.Name = "txt_Name_Cus";
             this.txt_Name_Cus.Size = new System.Drawing.Size(225, 22);
-            this.txt_Name_Cus.TabIndex = 5;
+            this.txt_Name_Cus.TabIndex = 0;
             // 
             // label3
             // 
@@ -274,8 +270,8 @@ namespace LibraryManagement
             this.txt_ID_Cus.Name = "txt_ID_Cus";
             this.txt_ID_Cus.ReadOnly = true;
             this.txt_ID_Cus.Size = new System.Drawing.Size(225, 22);
-            this.txt_ID_Cus.TabIndex = 2;
-            this.txt_ID_Cus.TextChanged += new System.EventHandler(this.Customer_ID_TextChanged);
+            this.txt_ID_Cus.TabIndex = 0;
+            this.txt_ID_Cus.TabStop = false;
             // 
             // label2
             // 
@@ -302,6 +298,7 @@ namespace LibraryManagement
             this.dataGridView_Cus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_Cus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_Cus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Cus.Location = new System.Drawing.Point(2, 55);
             this.dataGridView_Cus.Name = "dataGridView_Cus";
@@ -309,7 +306,7 @@ namespace LibraryManagement
             this.dataGridView_Cus.RowHeadersWidth = 51;
             this.dataGridView_Cus.RowTemplate.Height = 24;
             this.dataGridView_Cus.Size = new System.Drawing.Size(527, 543);
-            this.dataGridView_Cus.TabIndex = 1;
+            this.dataGridView_Cus.TabIndex = 100;
             this.dataGridView_Cus.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_Cus_RowHeaderMouseClick);
             // 
             // label10

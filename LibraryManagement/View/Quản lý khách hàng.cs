@@ -40,56 +40,6 @@ namespace LibraryManagement
             InitializeComponent();
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Customer_ID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Cus_name_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_them_Click(object sender, EventArgs e)
         {
             if (btn_xoa.Visible == true || btn_sua.Visible == true)
@@ -157,6 +107,16 @@ namespace LibraryManagement
 
         private void btn_sua_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn sửa người dùng này không?",
+                                          "Xác nhận sửa",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Warning);
+
+
+            if (result == DialogResult.No)
+            {
+                return;
+            }
             int id = int.Parse(txt_ID_Cus.Text);
             string name = txt_Name_Cus.Text;
             string gender = txt_gender.Text;
