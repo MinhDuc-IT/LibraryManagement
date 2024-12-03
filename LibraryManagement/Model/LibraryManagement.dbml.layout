@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LibraryManagement">
+  <DataContextMoniker Name="/LibraryManagementDataContext" />
+  <nestedChildShapes>
+    <classShape Id="c32e8278-d467-4faf-995c-e4b3468b07d7" absoluteBounds="3.5, 5, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/LibraryManagementDataContext/Book" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3849503d-3bcb-4f31-ada6-88c867ad943d" absoluteBounds="3.515, 5.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0eb02cf7-ef02-4615-8cdc-616952c33cf1" absoluteBounds="0.75, 1, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/LibraryManagementDataContext/Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1c1edb06-3cb3-4e33-acdd-e5b1eb328a6d" absoluteBounds="0.765, 1.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e50d8fb6-59ba-44d8-93de-c9e6e94d6b63" absoluteBounds="3.5, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/LibraryManagementDataContext/RentalSlip" />
+      <nestedChildShapes>
+        <elementListCompartment Id="17e9a991-8c34-4b3b-a3c6-d1eed796172f" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="118794ea-31e2-47ac-90d2-56951e05b112" absoluteBounds="6.25, 1.375, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/LibraryManagementDataContext/RentalSlipDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d1a35c05-31dd-49cd-9109-1fda36e03715" absoluteBounds="6.265, 1.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="44b9e701-66c1-408f-8da2-b5aad4ed869a" absoluteBounds="0.75, 5.5, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/LibraryManagementDataContext/Shelf" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e417d8c0-0888-4cdc-a0f5-18730379bde7" absoluteBounds="0.765, 5.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b0d87d0d-c069-4f3e-b9e6-199679f5266b" absoluteBounds="6.75, 4.75, 2, 2.9247054036458326">
+      <DataClassMoniker Name="/LibraryManagementDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="78c64483-a12b-4260-9e2b-c1cb1da2d774" absoluteBounds="6.765, 5.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.17390055338542); (3.5 : 2.17390055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LibraryManagementDataContext/Customer/Customer_RentalSlip" />
+      <nodes>
+        <classShapeMoniker Id="0eb02cf7-ef02-4615-8cdc-616952c33cf1" />
+        <classShapeMoniker Id="e50d8fb6-59ba-44d8-93de-c9e6e94d6b63" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 5); (5.875 : 4.625); (5.875 : 2.26044840494792); (6.25 : 2.26044840494792)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LibraryManagementDataContext/Book/Book_RentalSlipDetail" />
+      <nodes>
+        <classShapeMoniker Id="c32e8278-d467-4faf-995c-e4b3468b07d7" />
+        <classShapeMoniker Id="118794ea-31e2-47ac-90d2-56951e05b112" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.75522420247396); (6.25 : 1.75522420247396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LibraryManagementDataContext/RentalSlip/RentalSlip_RentalSlipDetail" />
+      <nodes>
+        <classShapeMoniker Id="e50d8fb6-59ba-44d8-93de-c9e6e94d6b63" />
+        <classShapeMoniker Id="118794ea-31e2-47ac-90d2-56951e05b112" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.19314697265625); (3.5 : 6.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LibraryManagementDataContext/Shelf/Shelf_Book" />
+      <nodes>
+        <classShapeMoniker Id="44b9e701-66c1-408f-8da2-b5aad4ed869a" />
+        <classShapeMoniker Id="c32e8278-d467-4faf-995c-e4b3468b07d7" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
