@@ -6,12 +6,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LibraryManagement
+namespace LibraryManagement.View
 {
     public partial class QLKH : Form
     {
@@ -149,7 +148,7 @@ namespace LibraryManagement
                                           MessageBoxButtons.YesNo,
                                           MessageBoxIcon.Warning);
 
-            
+
             if (result == DialogResult.No)
             {
                 return;
@@ -172,7 +171,7 @@ namespace LibraryManagement
             txt_ID_Cus.Text = "";
             txt_Name_Cus.Text = "";
             txt_gender.Text = "";
-            dateTime_dob.Value = DateTime.Now; 
+            dateTime_dob.Value = DateTime.Now;
             txt_phone.Text = "";
             txt_address.Text = "";
             txt_cccd.Text = "";
@@ -183,3 +182,4 @@ namespace LibraryManagement
         }
     }
 }
+
