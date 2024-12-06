@@ -39,8 +39,8 @@ namespace LibraryManagement.Controller
 
             return rs;
         }
-        public FunctionResult<Book> AddBook(string bookName, string description, string shelfID, string quantity, string publisher, string authorName,
-            string price, DateTime? dateOfRelease, byte[] image)
+        public FunctionResult<Book> AddBook(string bookName, string description, string shelfID, string quantity, 
+            string publisher, string authorName, string price, DateTime? dateOfRelease, byte[] image)
         {
             FunctionResult<Book> rs = new FunctionResult<Book>();
             try
@@ -160,8 +160,8 @@ namespace LibraryManagement.Controller
 
             return rs;
         }
-        public FunctionResult<Book> EditBook(int id, string bookName, string description, string shelfID, string quantity, string publisher, string authorName,
-            string price, DateTime? dateOfRelease, byte[] image)
+        public FunctionResult<Book> EditBook(int id, string bookName, string description, string shelfID, string quantity, 
+            string publisher, string authorName, string price, DateTime? dateOfRelease, byte[] image)
         {
             FunctionResult<Book> rs = new FunctionResult<Book>();
             try

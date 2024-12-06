@@ -42,5 +42,17 @@ namespace LibraryManagement.View
         {
             OpenChildForm(new Form_DashBoard());
         }
+
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            Form_Login form_Login = new Form_Login();
+            form_Login.Show();
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Form_User());
+        }
     }
 }
