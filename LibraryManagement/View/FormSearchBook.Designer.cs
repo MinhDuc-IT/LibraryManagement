@@ -56,7 +56,7 @@
             this.label1.Size = new System.Drawing.Size(236, 39);
             this.label1.TabIndex = 4;
             this.label1.Text = "Tìm kiếm sách";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            //this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnSearch
             // 
@@ -78,7 +78,7 @@
             this.dgvBookList.RowTemplate.Height = 24;
             this.dgvBookList.Size = new System.Drawing.Size(674, 231);
             this.dgvBookList.TabIndex = 6;
-            this.dgvBookList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBookList_CellContentClick);
+            //this.dgvBookList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBookList_CellContentClick);
             // 
             // label2
             // 
@@ -89,7 +89,7 @@
             this.label2.Size = new System.Drawing.Size(163, 29);
             this.label2.TabIndex = 7;
             this.label2.Text = "Nhập từ khóa";
-            this.label2.Click += new System.EventHandler(this.label2_Click_1);
+            //this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // btnReset
             // 
