@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Controller;
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace LibraryManagement
@@ -16,27 +17,96 @@ namespace LibraryManagement
 
         private void FormSearchBook_Load(object sender, EventArgs e)
         {
-            btnReset_Click(sender, e);
-        }
+            //Width = Parent.Width;
+            //Height = Parent.Height;
 
+            var rs = _searchBookCtrl.GetAll();
+            switch (rs.ErrCode)
+            {
+                case Model.EnumErrCode.Error:
+                    MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case Model.EnumErrCode.Empty:
+                    MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case Model.EnumErrCode.Success:
+                    dgvBookList.DataSource = rs.Data;
+                    break;
+            }
+
+            //var rs_nq = nq_ctrl.GetAll();
+            //switch (rs.ErrCode)
+            //{
+            //    case Models.EnumErrCode.Error:
+            //        MessageBox.Show(rs_nq.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        break;
+            //    case Models.EnumErrCode.Empty:
+            //        MessageBox.Show(rs_nq.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        break;
+            //    case Models.EnumErrCode.Success:
+            //        cbx_nhomQuyen.DataSource = rs_nq.Data;
+            //        cbx_nhomQuyen.DisplayMember = "TenNhomQuyen";
+            //        break;
+            //}
+        }
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string query = txtSearch.Text;
 
-            if (string.IsNullOrWhiteSpace(query))
+            var rs = _searchBookCtrl.SearchBooks(query);
+            switch (rs.ErrCode)
             {
-                dgvBookList.DataSource = _searchBookCtrl.GetAllBooks();
+                case Model.EnumErrCode.Error:
+                    MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case Model.EnumErrCode.Empty:
+                    MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case Model.EnumErrCode.Success:
+                    dgvBookList.DataSource = rs.Data;
+                    break;
             }
-            else
+        }
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            var rs = _searchBookCtrl.GetAll();
+            switch (rs.ErrCode)
             {
-                dgvBookList.DataSource = _searchBookCtrl.SearchBooks(query);
+                case Model.EnumErrCode.Error:
+                    MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case Model.EnumErrCode.Empty:
+                    MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case Model.EnumErrCode.Success:
+                    dgvBookList.DataSource = rs.Data;
+                    break;
             }
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
-        {
-            dgvBookList.DataSource = _searchBookCtrl.GetAllBooks();
-        }
+        //private void FormSearchBook_Load(object sender, EventArgs e)
+        //{
+        //    btnReset_Click(sender, e);
+        //}
+
+        //private void btnSearch_Click(object sender, EventArgs e)
+        //{
+        //    string query = txtSearch.Text;
+
+        //    if (string.IsNullOrWhiteSpace(query))
+        //    {
+        //        dgvBookList.DataSource = _searchBookCtrl.GetAll();
+        //    }
+        //    else
+        //    {
+        //        dgvBookList.DataSource = _searchBookCtrl.SearchBooks(query);
+        //    }
+        //}
+
+        //private void btnReset_Click(object sender, EventArgs e)
+        //{
+        //    dgvBookList.DataSource = _searchBookCtrl.GetAll();
+        //}
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
