@@ -77,6 +77,7 @@
             this.dataGridView_Cus.RowTemplate.Height = 24;
             this.dataGridView_Cus.Size = new System.Drawing.Size(895, 390);
             this.dataGridView_Cus.TabIndex = 145;
+            this.dataGridView_Cus.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_Cus_RowHeaderMouseClick);
             // 
             // btn_sua
             // 
