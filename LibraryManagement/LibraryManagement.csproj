@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Customer_ctrl.cs" />
+    <Compile Include="Controller\Shelf_ctrl.cs" />
     <Compile Include="Model\EnumErrCode.cs" />
     <Compile Include="Model\FunctResult.cs" />
     <Compile Include="Model\LibraryManagement.designer.cs">
@@ -63,8 +64,17 @@
     <Compile Include="View\Quản lý khách hàng.Designer.cs">
       <DependentUpon>Quản lý khách hàng.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Quản lý kệ sách.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Quản lý kệ sách.Designer.cs">
+      <DependentUpon>Quản lý kệ sách.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\Quản lý khách hàng.resx">
       <DependentUpon>Quản lý khách hàng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Quản lý kệ sách.resx">
+      <DependentUpon>Quản lý kệ sách.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Model\LibraryManagement.dbml.layout">
       <DependentUpon>LibraryManagement.dbml</DependentUpon>

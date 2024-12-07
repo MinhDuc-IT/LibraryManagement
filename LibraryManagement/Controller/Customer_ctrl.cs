@@ -79,7 +79,7 @@ namespace LibraryManagement.Controller
             catch (Exception ex) 
             {
                 cus.ErrCode = EnumErrCode.Error;
-                cus.ErrDesc = "Có lỗi xảy ra trong quá trình lấy dữ liệu người dùng. Chi tiết lỗi: " + ex.Message;
+                cus.ErrDesc = "Có lỗi xảy ra trong quá trình thêm mới khách hàng. Chi tiết lỗi: " + ex.Message;
                 cus.Data = null;
             }
             return cus;
@@ -122,7 +122,7 @@ namespace LibraryManagement.Controller
             catch (Exception ex)
             {
                 cus.ErrCode = EnumErrCode.Error;
-                cus.ErrDesc = "Có lỗi xảy ra trong quá trình lấy dữ liệu người dùng. Chi tiết lỗi: " + ex.Message;
+                cus.ErrDesc = "Có lỗi xảy ra trong quá trình lấy dữ liệu khách hàng. Chi tiết lỗi: " + ex.Message;
                 cus.Data = null;
             }
 
