@@ -5,6 +5,7 @@ using System.Windows.Forms;
 
 namespace LibraryManagement
 {
+
     public partial class FormSearchBook : Form
     {
         private readonly SearchBook_ctrl _searchBookCtrl;
@@ -25,9 +26,13 @@ namespace LibraryManagement
             {
                 case Model.EnumErrCode.Error:
                     MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dgvBookList.DataSource = null;
+
                     break;
                 case Model.EnumErrCode.Empty:
                     MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgvBookList.DataSource = null;
+
                     break;
                 case Model.EnumErrCode.Success:
                     dgvBookList.DataSource = rs.Data;
@@ -51,6 +56,7 @@ namespace LibraryManagement
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
+
             string query = txtSearch.Text;
 
             var rs = _searchBookCtrl.SearchBooks(query);
@@ -58,9 +64,13 @@ namespace LibraryManagement
             {
                 case Model.EnumErrCode.Error:
                     MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dgvBookList.DataSource = null;
+
                     break;
                 case Model.EnumErrCode.Empty:
                     MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgvBookList.DataSource = null;
+
                     break;
                 case Model.EnumErrCode.Success:
                     dgvBookList.DataSource = rs.Data;
@@ -69,14 +79,20 @@ namespace LibraryManagement
         }
         private void btnReset_Click(object sender, EventArgs e)
         {
+            dgvBookList.DataSource = null;
+
             var rs = _searchBookCtrl.GetAll();
             switch (rs.ErrCode)
             {
                 case Model.EnumErrCode.Error:
                     MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dgvBookList.DataSource = null;
+
                     break;
                 case Model.EnumErrCode.Empty:
                     MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgvBookList.DataSource = null;
+
                     break;
                 case Model.EnumErrCode.Success:
                     dgvBookList.DataSource = rs.Data;
@@ -110,6 +126,7 @@ namespace LibraryManagement
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Enter)
             {
                 btnSearch.PerformClick();
@@ -117,5 +134,7 @@ namespace LibraryManagement
                 e.SuppressKeyPress = true;
             }
         }
+
+       
     }
 }

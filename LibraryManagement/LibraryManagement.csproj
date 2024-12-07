@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\SearchBook_ctrl.cs" />
+    <Compile Include="Dto\SeacrchBookResponse.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

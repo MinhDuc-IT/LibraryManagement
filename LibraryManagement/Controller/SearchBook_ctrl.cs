@@ -1,8 +1,10 @@
-﻿using LibraryManagement.Model;
+﻿using LibraryManagement.Dto;
+using LibraryManagement.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,25 +18,23 @@ namespace LibraryManagement.Controller
         {
             db = new LibraryManagementDataContext("Data Source=LAPTOP-AMORBTV2;Initial Catalog=LibraryManagement;Integrated Security=True");
         }
-        public FunctionResult<List<Book>> GetAll()
+        public FunctionResult<List<SeacrchBookResponse>> GetAll()
         {
-            FunctionResult<List<Book>> rs = new FunctionResult<List<Book>>();
+            FunctionResult<List<SeacrchBookResponse>> rs = new FunctionResult<List<SeacrchBookResponse>>();
             try
             {
                 var qr = db.Books
-                    //.Select(b => new
-                    //{
-                    //    b.BookID,
-                    //    b.Name,
-                    //    b.ShelfID,
-                    //    b.Publisher,
-                    //    b.DateOfRelease,
-                    //    b.Author,
-                    //    b.Quantity,
-                    //    b.Price,
-                    //    b.IsDeleted,
-                        
-                    //})
+                    .Select(b => new SeacrchBookResponse
+                    {
+                        BookID = b.BookID,
+                        Name = b.Name,
+                        ShelfName =  b.Shelf.ShelfName,
+                        Publisher = b.Publisher,
+                        DateOfRelease = b.DateOfRelease,
+                        Author = b.Author,
+                        Quantity = b.Quantity,
+                        Price = b.Price,
+                    })
                     .ToList();
 
                 if (qr.Any())
@@ -60,28 +60,30 @@ namespace LibraryManagement.Controller
 
             return rs; // Trả về kết quả
         }
-        public FunctionResult<List<Book>> SearchBooks(string query)
+        public FunctionResult<List<SeacrchBookResponse>> SearchBooks(string query)
         {
-            FunctionResult<List<Book>> rs = new FunctionResult<List<Book>>();
+            FunctionResult<List<SeacrchBookResponse>> rs = new FunctionResult<List<SeacrchBookResponse>>();
             try
             {
+                //query = RemoveDiacritics(query).ToLower();
+
                 var qr = db.Books
-                .Where(b =>
+                .Where(b => string.IsNullOrEmpty(query)||
                     b.Name.ToLower().Contains(query) ||
                     b.Author.ToLower().Contains(query) ||
-                    b.Publisher.ToLower().Contains(query)) 
-                    //b.Shelf.ShelfName.ToLower().Contains(query))
-                //.Select(b => new
-                //{
-                //    b.BookID,
-                //    b.Name,
-                //    b.ShelfID,
-                //    b.Publisher,
-                //    b.DateOfRelease,
-                //    b.Author,
-                //    b.Quantity,
-                //    b.Price
-                //})
+                    b.Publisher.ToLower().Contains(query) ||
+                    b.Shelf.ShelfName.ToLower().Contains(query))
+                    .Select(b => new SeacrchBookResponse
+                    {
+                        BookID = b.BookID,
+                        Name = b.Name,
+                        ShelfName = b.Shelf.ShelfName,
+                        Publisher = b.Publisher,
+                        DateOfRelease = b.DateOfRelease,
+                        Author = b.Author,
+                        Quantity = b.Quantity,
+                        Price = b.Price,
+                    })
                     .ToList();
 
                 if (qr.Any())
@@ -107,6 +109,24 @@ namespace LibraryManagement.Controller
 
             return rs; // Trả về kết quả
         }
+
+        //private string RemoveDiacritics(string text)
+        //{
+        //    if (string.IsNullOrEmpty(text))
+        //        return text;
+
+        //    string normalized = text.Normalize(System.Text.NormalizationForm.FormD);
+        //    var builder = new System.Text.StringBuilder();
+        //    foreach (char c in normalized)
+        //    {
+        //        var category = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c);
+        //        if (category != System.Globalization.UnicodeCategory.NonSpacingMark)
+        //        {
+        //            builder.Append(c);
+        //        }
+        //    }
+        //    return builder.ToString().Normalize(System.Text.NormalizationForm.FormC);
+        //}
 
 
         /// <summary>
