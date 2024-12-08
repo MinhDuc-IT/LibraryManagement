@@ -33,5 +33,16 @@ namespace LibraryManagement.Properties {
                 return ((string)(this["LibraryManagementConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=THANHNGUYEN-PC\\SQLEXPRESS;Initial Catalog=newLibraryManagement;Persis" +
+            "t Security Info=True;User ID=sa;Password=123456")]
+        public string newLibraryManagementConnectionString {
+            get {
+                return ((string)(this["newLibraryManagementConnectionString"]));
+            }
+        }
     }
 }
