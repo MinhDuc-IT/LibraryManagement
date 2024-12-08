@@ -22,7 +22,7 @@ namespace LibraryManagement.Model
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="newLibraryManagement")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="LibraryManagement")]
 	public partial class DatabaseDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -54,7 +54,7 @@ namespace LibraryManagement.Model
     #endregion
 		
 		public DatabaseDataContext() : 
-				base(global::LibraryManagement.Properties.Settings.Default.LibraryManagementConnectionString1, mappingSource)
+				base(global::LibraryManagement.Properties.Settings.Default.LibraryManagementConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
