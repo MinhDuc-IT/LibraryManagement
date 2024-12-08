@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="newLibraryManagement" Class="DatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=THANHNGUYEN-PC\SQLEXPRESS;Initial Catalog=newLibraryManagement;Persist Security Info=True;User ID=sa" SettingsObjectName="LibraryManagement.Properties.Settings" SettingsPropertyName="newLibraryManagementConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LibraryManagement" Class="DatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-LFTTLGK3\SQLEXPRESS;Initial Catalog=LibraryManagement;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="LibraryManagement.Properties.Settings" SettingsPropertyName="LibraryManagementConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Book" Member="Books">
     <Type Name="Book">
       <Column Name="BookID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
