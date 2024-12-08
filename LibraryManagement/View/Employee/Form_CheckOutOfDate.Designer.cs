@@ -58,6 +58,7 @@ namespace LibraryManagement.View.Employee
             // btn_MakeRentalSlip
             // 
             this.btn_MakeRentalSlip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_MakeRentalSlip.Enabled = false;
             this.btn_MakeRentalSlip.Location = new System.Drawing.Point(708, 25);
             this.btn_MakeRentalSlip.Name = "btn_MakeRentalSlip";
             this.btn_MakeRentalSlip.Size = new System.Drawing.Size(154, 34);
@@ -86,7 +87,7 @@ namespace LibraryManagement.View.Employee
             this.btn_Search.Name = "btn_Search";
             this.btn_Search.Size = new System.Drawing.Size(82, 29);
             this.btn_Search.TabIndex = 4;
-            this.btn_Search.Text = "Tìm kiếm";
+            this.btn_Search.Text = "Duyệt";
             this.btn_Search.UseVisualStyleBackColor = true;
             this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
             // 
@@ -95,7 +96,7 @@ namespace LibraryManagement.View.Employee
             this.label_OverDue.AutoSize = true;
             this.label_OverDue.Location = new System.Drawing.Point(24, 131);
             this.label_OverDue.Name = "label_OverDue";
-            this.label_OverDue.Size = new System.Drawing.Size(254, 21);
+            this.label_OverDue.Size = new System.Drawing.Size(203, 17);
             this.label_OverDue.TabIndex = 5;
             this.label_OverDue.Text = "Danh sách phiếu thuê quá hạn";
             this.label_OverDue.Visible = false;

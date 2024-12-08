@@ -1,4 +1,5 @@
-﻿using LibraryManagement.Model;
+﻿using LibraryManagement.DTO;
+using LibraryManagement.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,9 +43,9 @@ namespace LibraryManagement.Controller
             return rs; // Trả về kết quả
         }
 
-        public FunctionResult<List<RentalSlip>> GetRentalSlipsByCustomer(int customerID)
+        public FunctionResult<List<RentalSlipDTO>> GetRentalSlipsByCustomer(int customerID)
         {
-            var result = new FunctionResult<List<RentalSlip>>();
+            var result = new FunctionResult<List<RentalSlipDTO>>();
 
             try
             {
@@ -57,10 +58,26 @@ namespace LibraryManagement.Controller
                     return result;
                 }
 
+                //from rs in db.RentalSlips
+                //join rsd in db.RentalSlipDetails on rs.RentalSlipID equals rsd.RentalSlipID
+                //where rs.CustomerID == customerID
+
                 var rentalSlips = from rs in db.RentalSlips
-                                  join rsd in db.RentalSlipDetails on rs.RentalSlipID equals rsd.RentalSlipID
                                   where rs.CustomerID == customerID
-                                  select rs;
+                                  select new RentalSlipDTO
+                                  {
+                                      RentalSlipID = rs.RentalSlipID,
+                                      CustomerID = rs.CustomerID,
+                                      RentalDate = rs.RentalDate,
+                                      DueDate = rs.DueDate,
+                                      TotalFee = rs.TotalFee,
+                                      RentalSlipDetails = rs.RentalSlipDetails.Select(rsd => new RentalSlipDetailDTO
+                                      {
+                                          RentalSlipDetailID = rsd.RentalSlipDetailID,
+                                          ReturnStatus = rsd.ReturnStatus
+                                      }).ToList()
+                                  };
+
 
                 if (!rentalSlips.Any())
                 {
@@ -85,47 +102,24 @@ namespace LibraryManagement.Controller
             return result;
         }
 
-
-        public FunctionResult<List<Book>> GetAllBooks()
+        public FunctionResult<List<BookDTO>> GetAllBooks()
         {
-            FunctionResult<List<Book>> rs = new FunctionResult<List<Book>>();
-            try
-            {
-                var qr = db.Books.ToList();
-
-                if (qr.Any())
-                {
-                    rs.Data = qr;
-                    rs.ErrCode = EnumErrCode.Success;
-                    rs.ErrDesc = "Lấy dữ liệu thành công.";
-                }
-                else
-                {
-                    rs.Data = null;
-                    rs.ErrCode = EnumErrCode.Empty;
-                    rs.ErrDesc = "Không tìm thấy dữ liệu.";
-                }
-            }
-            catch (Exception ex)
-            {
-                // Xử lý ngoại lệ
-                rs.ErrCode = EnumErrCode.Error;
-                rs.ErrDesc = "Có lỗi xảy ra trong qúa trình lấy dữ liệu tài khoản. Chi tiết lỗi: " + ex.Message;
-                rs.Data = null;
-            }
-
-            return rs; // Trả về kết quả
-        }
-        public FunctionResult<List<Book>> SearchBooks(string query)
-        {
-            FunctionResult<List<Book>> rs = new FunctionResult<List<Book>>();
+            FunctionResult<List<BookDTO>> rs = new FunctionResult<List<BookDTO>>();
             try
             {
                 var qr = db.Books
-                .Where(b =>
-                    b.Name.ToLower().Contains(query) ||
-                    b.Author.ToLower().Contains(query) ||
-                    b.Publisher.ToLower().Contains(query)).ToList();
+                    .Where(b => b.IsDeleted == false) // Lọc các sách chưa bị xóa
+                    .Select(b => new BookDTO
+                    {
+                        BookID = b.BookID,
+                        Name = b.Name,
+                        Author = b.Author,
+                        Publisher = b.Publisher,
+                        Price = b.Price,
+                        DateOfRelease = b.DateOfRelease,
+                        Image = b.Image != null ? b.Image.ToArray() : null
+                    })
+                    .ToList();
 
                 if (qr.Any())
                 {
@@ -142,14 +136,147 @@ namespace LibraryManagement.Controller
             }
             catch (Exception ex)
             {
-                // Xử lý ngoại lệ
                 rs.ErrCode = EnumErrCode.Error;
                 rs.ErrDesc = "Có lỗi xảy ra trong qúa trình lấy dữ liệu tài khoản. Chi tiết lỗi: " + ex.Message;
                 rs.Data = null;
             }
 
+            return rs;
+        }
+
+        //public FunctionResult<List<BookDTO>> GetAllBooks()
+        //{
+        //    FunctionResult<List<BookDTO>> rs = new FunctionResult<List<BookDTO>>();
+        //    try
+        //    {
+        //        // Truy vấn dữ liệu từ bảng Books, loại bỏ các sách bị xóa
+        //        var books = db.Books
+        //            .Where(b => b.IsDeleted == false)
+        //            .Select(b => new BookDTO
+        //            {
+        //                BookID = b.BookID,
+        //                Name = b.Name,
+        //                ShelfID = b.ShelfID,
+        //                Publisher = b.Publisher,
+        //                DateOfRelease = b.DateOfRelease,
+        //                Author = b.Author,
+        //                Quantity = b.Quantity,
+        //                Price = b.Price,
+        //                Description = b.Description
+        //            })
+        //            .ToList();
+
+        //        if (books.Any())
+        //        {
+        //            rs.Data = books;
+        //            rs.ErrCode = EnumErrCode.Success;
+        //            rs.ErrDesc = "Lấy dữ liệu thành công.";
+        //        }
+        //        else
+        //        {
+        //            rs.Data = null;
+        //            rs.ErrCode = EnumErrCode.Empty;
+        //            rs.ErrDesc = "Không tìm thấy dữ liệu.";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        rs.ErrCode = EnumErrCode.Error;
+        //        rs.ErrDesc = "Có lỗi xảy ra trong quá trình lấy dữ liệu sách. Chi tiết lỗi: " + ex.Message;
+        //        rs.Data = null;
+        //    }
+
+        //    return rs; // Trả về kết quả
+        //}
+
+
+
+
+        //public FunctionResult<List<Book>> SearchBooks(string query)
+        //{
+        //    FunctionResult<List<Book>> rs = new FunctionResult<List<Book>>();
+        //    try
+        //    {
+        //        var qr = db.Books
+        //        .Where(b =>
+        //            b.Name.ToLower().Contains(query) ||
+        //            b.Author.ToLower().Contains(query) ||
+        //            b.Publisher.ToLower().Contains(query)).ToList();
+
+        //        if (qr.Any())
+        //        {
+        //            rs.Data = qr;
+        //            rs.ErrCode = EnumErrCode.Success;
+        //            rs.ErrDesc = "Lấy dữ liệu thành công.";
+        //        }
+        //        else
+        //        {
+        //            rs.Data = null;
+        //            rs.ErrCode = EnumErrCode.Empty;
+        //            rs.ErrDesc = "Không tìm thấy dữ liệu.";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Xử lý ngoại lệ
+        //        rs.ErrCode = EnumErrCode.Error;
+        //        rs.ErrDesc = "Có lỗi xảy ra trong qúa trình lấy dữ liệu tài khoản. Chi tiết lỗi: " + ex.Message;
+        //        rs.Data = null;
+        //    }
+
+        //    return rs; // Trả về kết quả
+        //}
+
+        public FunctionResult<List<BookDTO>> SearchBooks(string query)
+        {
+            FunctionResult<List<BookDTO>> rs = new FunctionResult<List<BookDTO>>();
+            try
+            {
+                // Truy vấn tìm kiếm theo tên, tác giả và nhà xuất bản
+                var books = db.Books
+                    .Where(b =>
+                        b.IsDeleted == false &&
+                        (b.Name.ToLower().Contains(query.ToLower()) ||
+                         b.Author.ToLower().Contains(query.ToLower()) ||
+                         b.Publisher.ToLower().Contains(query.ToLower())))
+                    .Select(b => new BookDTO
+                    {
+                        BookID = b.BookID,
+                        Name = b.Name,
+                        ShelfID = b.ShelfID,
+                        Publisher = b.Publisher,
+                        DateOfRelease = b.DateOfRelease,
+                        Author = b.Author,
+                        Quantity = b.Quantity,
+                        Price = b.Price,
+                        Description = b.Description,
+                        Image = b.Image != null ? b.Image.ToArray() : null
+                    })
+                    .ToList();
+
+                if (books.Any())
+                {
+                    rs.Data = books;
+                    rs.ErrCode = EnumErrCode.Success;
+                    rs.ErrDesc = "Lấy dữ liệu thành công.";
+                }
+                else
+                {
+                    rs.Data = null;
+                    rs.ErrCode = EnumErrCode.Empty;
+                    rs.ErrDesc = "Không tìm thấy dữ liệu.";
+                }
+            }
+            catch (Exception ex)
+            {
+                rs.ErrCode = EnumErrCode.Error;
+                rs.ErrDesc = "Có lỗi xảy ra trong quá trình tìm kiếm dữ liệu sách. Chi tiết lỗi: " + ex.Message;
+                rs.Data = null;
+            }
+
             return rs; // Trả về kết quả
         }
+
 
         public FunctionResult<int> AddRentalSlip(RentalSlip rentalSlip)
         {
@@ -173,6 +300,13 @@ namespace LibraryManagement.Controller
                     Data = -1
                 };
             }
+        }
+
+        public byte[] GetBookImageById(int bookID)
+        {
+            // Truy vấn sách theo BookID và trả về ảnh (nếu có)
+            var book = db.Books.FirstOrDefault(b => b.BookID == bookID);
+            return book.Image != null ? book.Image.ToArray() : null; // Trả về ảnh dưới dạng byte[] hoặc null nếu không có
         }
 
         public FunctionResult<bool> AddRentalSlipDetails(List<RentalSlipDetail> rentalSlipDetails)

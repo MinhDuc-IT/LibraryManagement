@@ -38,9 +38,7 @@ namespace LibraryManagement.View.Employee
             this.btn_AddRentalDetail = new System.Windows.Forms.Button();
             this.btn_DeleteRentalDetail = new System.Windows.Forms.Button();
             this.btn_EditRentalDetail = new System.Windows.Forms.Button();
-            this.txt_RentalDate = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_DueDate = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_AddRentalSlip = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -52,6 +50,8 @@ namespace LibraryManagement.View.Employee
             this.btn_Search = new System.Windows.Forms.Button();
             this.txt_CustomerID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.dateTimePicker_RentalDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_DueDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RentalDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Books)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +84,7 @@ namespace LibraryManagement.View.Employee
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 127);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 21);
+            this.label2.Size = new System.Drawing.Size(95, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Cước phí thuê";
             // 
@@ -100,7 +100,7 @@ namespace LibraryManagement.View.Employee
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 69);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 21);
+            this.label3.Size = new System.Drawing.Size(64, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Số lượng";
             // 
@@ -116,55 +116,41 @@ namespace LibraryManagement.View.Employee
             // 
             // btn_DeleteRentalDetail
             // 
+            this.btn_DeleteRentalDetail.Enabled = false;
             this.btn_DeleteRentalDetail.Location = new System.Drawing.Point(238, 28);
             this.btn_DeleteRentalDetail.Name = "btn_DeleteRentalDetail";
             this.btn_DeleteRentalDetail.Size = new System.Drawing.Size(75, 23);
             this.btn_DeleteRentalDetail.TabIndex = 7;
             this.btn_DeleteRentalDetail.Text = "Xóa";
             this.btn_DeleteRentalDetail.UseVisualStyleBackColor = true;
+            this.btn_DeleteRentalDetail.Click += new System.EventHandler(this.btn_DeleteRentalDetail_Click);
             // 
             // btn_EditRentalDetail
             // 
+            this.btn_EditRentalDetail.Enabled = false;
             this.btn_EditRentalDetail.Location = new System.Drawing.Point(238, 88);
             this.btn_EditRentalDetail.Name = "btn_EditRentalDetail";
             this.btn_EditRentalDetail.Size = new System.Drawing.Size(75, 23);
             this.btn_EditRentalDetail.TabIndex = 8;
             this.btn_EditRentalDetail.Text = "Sửa";
             this.btn_EditRentalDetail.UseVisualStyleBackColor = true;
-            // 
-            // txt_RentalDate
-            // 
-            this.txt_RentalDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_RentalDate.Location = new System.Drawing.Point(800, 29);
-            this.txt_RentalDate.Name = "txt_RentalDate";
-            this.txt_RentalDate.Size = new System.Drawing.Size(162, 22);
-            this.txt_RentalDate.TabIndex = 12;
-            this.txt_RentalDate.Text = "yyyy-mm-dd";
+            this.btn_EditRentalDetail.Click += new System.EventHandler(this.btn_EditRentalDetail_Click);
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(797, 9);
+            this.label4.Location = new System.Drawing.Point(847, 5);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 17);
             this.label4.TabIndex = 11;
             this.label4.Text = "Ngày thuê";
             // 
-            // txt_DueDate
-            // 
-            this.txt_DueDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_DueDate.Location = new System.Drawing.Point(800, 87);
-            this.txt_DueDate.Name = "txt_DueDate";
-            this.txt_DueDate.Size = new System.Drawing.Size(162, 22);
-            this.txt_DueDate.TabIndex = 10;
-            this.txt_DueDate.Text = "yyyy-mm-dd";
-            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(797, 67);
+            this.label5.Location = new System.Drawing.Point(847, 67);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 17);
             this.label5.TabIndex = 9;
@@ -173,9 +159,9 @@ namespace LibraryManagement.View.Employee
             // btn_AddRentalSlip
             // 
             this.btn_AddRentalSlip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_AddRentalSlip.Location = new System.Drawing.Point(800, 127);
+            this.btn_AddRentalSlip.Location = new System.Drawing.Point(850, 127);
             this.btn_AddRentalSlip.Name = "btn_AddRentalSlip";
-            this.btn_AddRentalSlip.Size = new System.Drawing.Size(162, 42);
+            this.btn_AddRentalSlip.Size = new System.Drawing.Size(200, 42);
             this.btn_AddRentalSlip.TabIndex = 13;
             this.btn_AddRentalSlip.Text = "Thêm phiếu thuê mới";
             this.btn_AddRentalSlip.UseVisualStyleBackColor = true;
@@ -203,7 +189,7 @@ namespace LibraryManagement.View.Employee
             this.dataGridView_RentalDetails.Name = "dataGridView_RentalDetails";
             this.dataGridView_RentalDetails.RowHeadersWidth = 51;
             this.dataGridView_RentalDetails.RowTemplate.Height = 24;
-            this.dataGridView_RentalDetails.Size = new System.Drawing.Size(950, 261);
+            this.dataGridView_RentalDetails.Size = new System.Drawing.Size(1038, 261);
             this.dataGridView_RentalDetails.TabIndex = 15;
             this.dataGridView_RentalDetails.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_RentalDetails_RowHeaderMouseClick);
             this.dataGridView_RentalDetails.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_RentalDetails_RowHeaderMouseDoubleClick);
@@ -231,7 +217,7 @@ namespace LibraryManagement.View.Employee
             this.dataGridView_Books.Name = "dataGridView_Books";
             this.dataGridView_Books.RowHeadersWidth = 51;
             this.dataGridView_Books.RowTemplate.Height = 24;
-            this.dataGridView_Books.Size = new System.Drawing.Size(950, 364);
+            this.dataGridView_Books.Size = new System.Drawing.Size(1038, 391);
             this.dataGridView_Books.TabIndex = 17;
             this.dataGridView_Books.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Books_CellContentClick);
             this.dataGridView_Books.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_Books_RowHeaderMouseClick);
@@ -240,7 +226,7 @@ namespace LibraryManagement.View.Employee
             // 
             this.txt_Search.Location = new System.Drawing.Point(394, 87);
             this.txt_Search.Name = "txt_Search";
-            this.txt_Search.Size = new System.Drawing.Size(175, 22);
+            this.txt_Search.Size = new System.Drawing.Size(162, 22);
             this.txt_Search.TabIndex = 19;
             // 
             // label8
@@ -275,15 +261,33 @@ namespace LibraryManagement.View.Employee
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(391, 9);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(131, 21);
+            this.label9.Size = new System.Drawing.Size(105, 17);
             this.label9.TabIndex = 21;
             this.label9.Text = "Mã khách hàng";
+            // 
+            // dateTimePicker_RentalDate
+            // 
+            this.dateTimePicker_RentalDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker_RentalDate.Location = new System.Drawing.Point(850, 29);
+            this.dateTimePicker_RentalDate.Name = "dateTimePicker_RentalDate";
+            this.dateTimePicker_RentalDate.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker_RentalDate.TabIndex = 23;
+            // 
+            // dateTimePicker_DueDate
+            // 
+            this.dateTimePicker_DueDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker_DueDate.Location = new System.Drawing.Point(850, 89);
+            this.dateTimePicker_DueDate.Name = "dateTimePicker_DueDate";
+            this.dateTimePicker_DueDate.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker_DueDate.TabIndex = 24;
             // 
             // Form_RentalSlip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 934);
+            this.ClientSize = new System.Drawing.Size(1062, 961);
+            this.Controls.Add(this.dateTimePicker_DueDate);
+            this.Controls.Add(this.dateTimePicker_RentalDate);
             this.Controls.Add(this.txt_CustomerID);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btn_Search);
@@ -294,9 +298,7 @@ namespace LibraryManagement.View.Employee
             this.Controls.Add(this.dataGridView_RentalDetails);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btn_AddRentalSlip);
-            this.Controls.Add(this.txt_RentalDate);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txt_DueDate);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btn_EditRentalDetail);
             this.Controls.Add(this.btn_DeleteRentalDetail);
@@ -330,9 +332,7 @@ namespace LibraryManagement.View.Employee
         private System.Windows.Forms.Button btn_AddRentalDetail;
         private System.Windows.Forms.Button btn_DeleteRentalDetail;
         private System.Windows.Forms.Button btn_EditRentalDetail;
-        private System.Windows.Forms.TextBox txt_RentalDate;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_DueDate;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_AddRentalSlip;
         private System.Windows.Forms.Label label6;
@@ -344,5 +344,7 @@ namespace LibraryManagement.View.Employee
         private System.Windows.Forms.Button btn_Search;
         private System.Windows.Forms.TextBox txt_CustomerID;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_RentalDate;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_DueDate;
     }
 }
