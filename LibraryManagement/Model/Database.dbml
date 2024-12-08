@@ -1,5 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LibraryManagement" Class="DatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-TN4CIUV\SQLEXPRESS;Initial Catalog=LibraryManagement;Persist Security Info=True;User ID=sa;Trust Server Certificate=True" SettingsObjectName="LibraryManagement.Properties.Settings" SettingsPropertyName="LibraryManagementConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-TN4CIUV\SQLEXPRESS;Initial Catalog=LibraryManagement;Persist Security Info=True;User ID=sa;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="LibraryManagement.Properties.Settings" SettingsPropertyName="LibraryManagementConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Book" Member="Books">
+    <Type Name="Book">
+      <Column Name="BookID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ShelfID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Publisher" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DateOfRelease" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Author" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Book_RentalSlipDetail" Member="RentalSlipDetails" ThisKey="BookID" OtherKey="BookID" Type="RentalSlipDetail" />
+      <Association Name="Shelf_Book" Member="Shelf" ThisKey="ShelfID" OtherKey="ShelfID" Type="Shelf" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Customer" Member="Customers">
     <Type Name="Customer">
       <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -20,10 +37,7 @@
       <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="RentalDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="DueDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="ReturnDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="TotalFee" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="IsReturnedOnTime" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="IsBookIntact" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="RentalSlip_RentalSlipDetail" Member="RentalSlipDetails" ThisKey="RentalSlipID" OtherKey="RentalSlipID" Type="RentalSlipDetail" />
       <Association Name="Customer_RentalSlip" Member="Customer" ThisKey="CustomerID" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
     </Type>
@@ -35,8 +49,20 @@
       <Column Name="BookID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="RentalFee" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
-      <Association Name="RentalSlip_RentalSlipDetail" Member="RentalSlip" ThisKey="RentalSlipID" OtherKey="RentalSlipID" Type="RentalSlip" IsForeignKey="true" />
+      <Column Name="ReturnStatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="RentalSlipDetail_ReturnHistory" Member="ReturnHistories" ThisKey="RentalSlipDetailID" OtherKey="RentalSlipDetailID" Type="ReturnHistory" />
       <Association Name="Book_RentalSlipDetail" Member="Book" ThisKey="BookID" OtherKey="BookID" Type="Book" IsForeignKey="true" />
+      <Association Name="RentalSlip_RentalSlipDetail" Member="RentalSlip" ThisKey="RentalSlipID" OtherKey="RentalSlipID" Type="RentalSlip" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReturnHistory" Member="ReturnHistories">
+    <Type Name="ReturnHistory">
+      <Column Name="ReturnHistoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RentalSlipDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReturnDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AmountPaid" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="RentalSlipDetail_ReturnHistory" Member="RentalSlipDetail" ThisKey="RentalSlipDetailID" OtherKey="RentalSlipDetailID" Type="RentalSlipDetail" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Shelf" Member="Shelfs">
@@ -45,23 +71,6 @@
       <Column Name="ShelfName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Shelf_Book" Member="Books" ThisKey="ShelfID" OtherKey="ShelfID" Type="Book" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Book" Member="Books">
-    <Type Name="Book">
-      <Column Name="BookID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="ShelfID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Publisher" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="DateOfRelease" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Author" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
-      <Column Name="Image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Association Name="Book_RentalSlipDetail" Member="RentalSlipDetails" ThisKey="BookID" OtherKey="BookID" Type="RentalSlipDetail" />
-      <Association Name="Shelf_Book" Member="Shelf" ThisKey="ShelfID" OtherKey="ShelfID" Type="Shelf" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.[User]" Member="Users">

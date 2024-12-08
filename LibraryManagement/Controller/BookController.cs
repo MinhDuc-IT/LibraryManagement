@@ -15,7 +15,7 @@ namespace LibraryManagement.Controller
             FunctionResult<List<Shelf>> rs = new FunctionResult<List<Shelf>>();
             try
             {
-                var qr = db.Shelfs.ToList();
+                var qr = db.Shelfs.Where(x => x.IsDeleted == false).ToList();
 
                 if (qr.Any())
                 {
@@ -218,6 +218,36 @@ namespace LibraryManagement.Controller
                     rs.ErrCode = EnumErrCode.Empty;
                     rs.Data = bookEdit;
                     rs.ErrDesc = "Không tìm thấy sách với ID: " + id;
+                }
+            }
+            catch (Exception ex)
+            {
+                rs.ErrCode = EnumErrCode.Error;
+                rs.Data = null;
+                rs.ErrDesc = ex.Message;
+            }
+            return rs;
+        }
+        public FunctionResult<Book> UpdateQuantityByReturn(int BookId, int quantity)
+        {
+            FunctionResult<Book> rs = new FunctionResult<Book>();
+            try
+            {
+                Book book = db.Books.FirstOrDefault(b => b.BookID == BookId);
+                if (book != null)
+                {
+                    book.Quantity += quantity;
+
+                    db.SubmitChanges();
+                    rs.ErrCode = EnumErrCode.Success;
+                    rs.Data = book;
+                    rs.ErrDesc = "cập nhật số lượng sách thành công.";
+                }
+                else
+                {
+                    rs.ErrCode = EnumErrCode.Empty;
+                    rs.Data = null;
+                    rs.ErrDesc = "Không tìm thấy sách với ID: " + BookId;
                 }
             }
             catch (Exception ex)

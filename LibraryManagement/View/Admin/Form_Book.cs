@@ -49,7 +49,7 @@ namespace LibraryManagement.View
                 dt.Columns.Add("Quantity", typeof(int));
                 dt.Columns.Add("Publisher", typeof(string));
                 dt.Columns.Add("Author Name", typeof(string));
-                dt.Columns.Add("Price", typeof(decimal));
+                dt.Columns.Add("Price", typeof(string));
                 dt.Columns.Add("Date Of Release", typeof(DateTime));
                 dt.Columns.Add("Image", typeof(Image));
 
@@ -62,7 +62,9 @@ namespace LibraryManagement.View
                         img = ByteArrayToImage(book.Image.ToArray());
                     }
 
-                    dt.Rows.Add(book.BookID, book.Name, book.Description, book.ShelfID, book.Quantity, book.Publisher, book.Author, book.Price, book.DateOfRelease, img);
+                    string priceFormat = book.Price.ToString("N0");
+
+                    dt.Rows.Add(book.BookID, book.Name, book.Description, book.ShelfID, book.Quantity, book.Publisher, book.Author, priceFormat, book.DateOfRelease, img);
                 }
 
                 dataGridView1.DataSource = dt;

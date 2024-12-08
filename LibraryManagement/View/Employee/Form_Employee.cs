@@ -37,5 +37,27 @@ namespace LibraryManagement.View
         {
             OpenChildForm(new Form_ReturnBooks());
         }
+
+        private void btn_AddCustomer_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Form_Customer());
+        }
+
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            Form_Login form_Login = new Form_Login();
+            form_Login.Show();
+            this.Hide();
+        }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Form_Search());
+        }
+
+        private void btn_home_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

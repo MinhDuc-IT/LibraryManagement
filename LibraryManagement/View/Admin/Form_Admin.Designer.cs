@@ -32,8 +32,8 @@
             this.panel_body = new System.Windows.Forms.Panel();
             this.panel_left = new System.Windows.Forms.Panel();
             this.btn_logout = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_statistical = new System.Windows.Forms.Button();
+            this.btn_shelf = new System.Windows.Forms.Button();
             this.btn_Book = new System.Windows.Forms.Button();
             this.btn_DashBoard = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -58,8 +58,8 @@
             // 
             this.panel_left.BackColor = System.Drawing.SystemColors.HotTrack;
             this.panel_left.Controls.Add(this.btn_logout);
-            this.panel_left.Controls.Add(this.button2);
-            this.panel_left.Controls.Add(this.button4);
+            this.panel_left.Controls.Add(this.btn_statistical);
+            this.panel_left.Controls.Add(this.btn_shelf);
             this.panel_left.Controls.Add(this.btn_Book);
             this.panel_left.Controls.Add(this.btn_DashBoard);
             this.panel_left.Controls.Add(this.button1);
@@ -84,29 +84,31 @@
             this.btn_logout.UseVisualStyleBackColor = true;
             this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
             // 
-            // button2
+            // btn_statistical
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(0, 572);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(311, 49);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "          Thống kê";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_statistical.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_statistical.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_statistical.Location = new System.Drawing.Point(0, 572);
+            this.btn_statistical.Name = "btn_statistical";
+            this.btn_statistical.Size = new System.Drawing.Size(311, 49);
+            this.btn_statistical.TabIndex = 6;
+            this.btn_statistical.Text = "          Thống kê";
+            this.btn_statistical.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_statistical.UseVisualStyleBackColor = true;
+            this.btn_statistical.Click += new System.EventHandler(this.btn_statistical_Click);
             // 
-            // button4
+            // btn_shelf
             // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(0, 498);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(311, 49);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "          Quản lý kệ sách";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn_shelf.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_shelf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_shelf.Location = new System.Drawing.Point(0, 498);
+            this.btn_shelf.Name = "btn_shelf";
+            this.btn_shelf.Size = new System.Drawing.Size(311, 49);
+            this.btn_shelf.TabIndex = 5;
+            this.btn_shelf.Text = "          Quản lý kệ sách";
+            this.btn_shelf.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_shelf.UseVisualStyleBackColor = true;
+            this.btn_shelf.Click += new System.EventHandler(this.btn_shelf_Click);
             // 
             // btn_Book
             // 
@@ -158,6 +160,7 @@
             this.btn_Customer.Text = "          Quản lý khách hàng";
             this.btn_Customer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Customer.UseVisualStyleBackColor = true;
+            this.btn_Customer.Click += new System.EventHandler(this.btn_Customer_Click);
             // 
             // pictureBox1
             // 
@@ -207,7 +210,7 @@
 
         private System.Windows.Forms.Panel panel_body;
         private System.Windows.Forms.Panel panel_left;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_shelf;
         private System.Windows.Forms.Button btn_Book;
         private System.Windows.Forms.Button btn_DashBoard;
         private System.Windows.Forms.Button button1;
@@ -215,7 +218,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel_Top;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_statistical;
         private System.Windows.Forms.Button btn_logout;
     }
 }

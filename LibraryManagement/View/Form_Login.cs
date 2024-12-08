@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -21,7 +22,15 @@ namespace LibraryManagement.View
         {
             InitializeComponent();
         }
-
+        private bool checkEmail(string email)
+        {
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            if (string.IsNullOrEmpty(email) || !Regex.IsMatch(email, emailPattern))
+            {
+                return false;
+            }
+            return true;
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string tk = txtTK.Text;
@@ -29,12 +38,17 @@ namespace LibraryManagement.View
 
             if (string.IsNullOrEmpty(tk))
             {
-                MessageBox.Show("Vui lòng nhập vào tài khoản", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập vào Email", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTK.Focus();
             }
             else
             {
-                if (string.IsNullOrEmpty(mk))
+                if (!checkEmail(tk))
+                {
+                    MessageBox.Show("Định dạng Email không hợp lệ", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtTK.Focus();
+                }
+                else if (string.IsNullOrEmpty(mk))
                 {
                     MessageBox.Show("Vui lòng nhập vào mật khẩu", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtMK.Focus();
@@ -49,7 +63,6 @@ namespace LibraryManagement.View
                             MessageBox.Show(rs.ErrDesc, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                         case Model.EnumErrCode.Success:
-                            //MessageBox.Show(rs.ErrDesc, "Thông báo thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             valid = true;
                             break;
                         case Model.EnumErrCode.IsValidInput:
@@ -88,13 +101,6 @@ namespace LibraryManagement.View
             {
                 txtMK.PasswordChar = '*'; 
             }
-        }
-
-        private void btn_SignUp_Click(object sender, EventArgs e)
-        {
-            Form_SignUp form_signup = new Form_SignUp();
-            form_signup.Show();
-            this.Hide();
         }
     }
 }

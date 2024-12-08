@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManagement.View.Admin;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -53,6 +54,21 @@ namespace LibraryManagement.View
         private void button1_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Form_User());
+        }
+
+        private void btn_shelf_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Form_Shelf());
+        }
+
+        private void btn_Customer_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Form_Customer());
+        }
+
+        private void btn_statistical_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Form_statistical());
         }
     }
 }

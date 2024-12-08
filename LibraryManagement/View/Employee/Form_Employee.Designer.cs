@@ -31,10 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Employee));
             this.panel_body = new System.Windows.Forms.Panel();
             this.panel_left = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_search = new System.Windows.Forms.Button();
+            this.btn_logout = new System.Windows.Forms.Button();
             this.btn_Return = new System.Windows.Forms.Button();
-            this.btn_DashBoard = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_home = new System.Windows.Forms.Button();
+            this.btn_AddCustomer = new System.Windows.Forms.Button();
             this.btn_Customer = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -55,10 +56,11 @@
             // panel_left
             // 
             this.panel_left.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.panel_left.Controls.Add(this.button4);
+            this.panel_left.Controls.Add(this.btn_search);
+            this.panel_left.Controls.Add(this.btn_logout);
             this.panel_left.Controls.Add(this.btn_Return);
-            this.panel_left.Controls.Add(this.btn_DashBoard);
-            this.panel_left.Controls.Add(this.button1);
+            this.panel_left.Controls.Add(this.btn_home);
+            this.panel_left.Controls.Add(this.btn_AddCustomer);
             this.panel_left.Controls.Add(this.btn_Customer);
             this.panel_left.Controls.Add(this.pictureBox1);
             this.panel_left.Dock = System.Windows.Forms.DockStyle.Left;
@@ -67,17 +69,31 @@
             this.panel_left.Size = new System.Drawing.Size(311, 759);
             this.panel_left.TabIndex = 8;
             // 
-            // button4
+            // btn_search
             // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(0, 498);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(311, 49);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "          Đăng xuất";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn_search.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search.Location = new System.Drawing.Point(0, 499);
+            this.btn_search.Name = "btn_search";
+            this.btn_search.Size = new System.Drawing.Size(311, 49);
+            this.btn_search.TabIndex = 7;
+            this.btn_search.Text = "          Tìm kiếm sách";
+            this.btn_search.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_search.UseVisualStyleBackColor = true;
+            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
+            // 
+            // btn_logout
+            // 
+            this.btn_logout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_logout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_logout.Location = new System.Drawing.Point(0, 573);
+            this.btn_logout.Name = "btn_logout";
+            this.btn_logout.Size = new System.Drawing.Size(311, 49);
+            this.btn_logout.TabIndex = 5;
+            this.btn_logout.Text = "          Đăng xuất";
+            this.btn_logout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_logout.UseVisualStyleBackColor = true;
+            this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
             // 
             // btn_Return
             // 
@@ -92,29 +108,31 @@
             this.btn_Return.UseVisualStyleBackColor = true;
             this.btn_Return.Click += new System.EventHandler(this.btn_Return_Click);
             // 
-            // btn_DashBoard
+            // btn_home
             // 
-            this.btn_DashBoard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_DashBoard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_DashBoard.Location = new System.Drawing.Point(0, 208);
-            this.btn_DashBoard.Name = "btn_DashBoard";
-            this.btn_DashBoard.Size = new System.Drawing.Size(311, 49);
-            this.btn_DashBoard.TabIndex = 3;
-            this.btn_DashBoard.Text = "          Trang chủ";
-            this.btn_DashBoard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_DashBoard.UseVisualStyleBackColor = true;
+            this.btn_home.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_home.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_home.Location = new System.Drawing.Point(0, 208);
+            this.btn_home.Name = "btn_home";
+            this.btn_home.Size = new System.Drawing.Size(311, 49);
+            this.btn_home.TabIndex = 3;
+            this.btn_home.Text = "          Trang chủ";
+            this.btn_home.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_home.UseVisualStyleBackColor = true;
+            this.btn_home.Click += new System.EventHandler(this.btn_home_Click);
             // 
-            // button1
+            // btn_AddCustomer
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(0, 280);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(311, 49);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "          Tạo thẻ khách hàng";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_AddCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_AddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_AddCustomer.Location = new System.Drawing.Point(0, 280);
+            this.btn_AddCustomer.Name = "btn_AddCustomer";
+            this.btn_AddCustomer.Size = new System.Drawing.Size(311, 49);
+            this.btn_AddCustomer.TabIndex = 2;
+            this.btn_AddCustomer.Text = "          Tạo thẻ khách hàng";
+            this.btn_AddCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_AddCustomer.UseVisualStyleBackColor = true;
+            this.btn_AddCustomer.Click += new System.EventHandler(this.btn_AddCustomer_Click);
             // 
             // btn_Customer
             // 
@@ -177,12 +195,13 @@
         private System.Windows.Forms.Panel panel_body;
         private System.Windows.Forms.Panel panel_left;
         private System.Windows.Forms.Button btn_Return;
-        private System.Windows.Forms.Button btn_DashBoard;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_home;
+        private System.Windows.Forms.Button btn_AddCustomer;
         private System.Windows.Forms.Button btn_Customer;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel_Top;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_logout;
+        private System.Windows.Forms.Button btn_search;
     }
 }

@@ -40,7 +40,7 @@ namespace LibraryManagement.Controller
                 {
                     rs.ErrCode = EnumErrCode.IsValidInput;
                     rs.Data = null;
-                    rs.ErrDesc = "Vui lòng nhập số điện thoại hợp lệ (bắt đầu bằng 84 và có tổn 11 số).";
+                    rs.ErrDesc = "Vui lòng nhập số điện thoại hợp lệ (bắt đầu bằng 84 và có tổng 11 số).";
                     return rs;
                 }
 

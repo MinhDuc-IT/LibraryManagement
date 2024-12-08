@@ -30,6 +30,9 @@ namespace LibraryManagement.Model
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertBook(Book instance);
+    partial void UpdateBook(Book instance);
+    partial void DeleteBook(Book instance);
     partial void InsertCustomer(Customer instance);
     partial void UpdateCustomer(Customer instance);
     partial void DeleteCustomer(Customer instance);
@@ -39,19 +42,19 @@ namespace LibraryManagement.Model
     partial void InsertRentalSlipDetail(RentalSlipDetail instance);
     partial void UpdateRentalSlipDetail(RentalSlipDetail instance);
     partial void DeleteRentalSlipDetail(RentalSlipDetail instance);
+    partial void InsertReturnHistory(ReturnHistory instance);
+    partial void UpdateReturnHistory(ReturnHistory instance);
+    partial void DeleteReturnHistory(ReturnHistory instance);
     partial void InsertShelf(Shelf instance);
     partial void UpdateShelf(Shelf instance);
     partial void DeleteShelf(Shelf instance);
-    partial void InsertBook(Book instance);
-    partial void UpdateBook(Book instance);
-    partial void DeleteBook(Book instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
     #endregion
 		
 		public DatabaseDataContext() : 
-				base(global::LibraryManagement.Properties.Settings.Default.LibraryManagementConnectionString1, mappingSource)
+				base(global::LibraryManagement.Properties.Settings.Default.LibraryManagementConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -80,6 +83,14 @@ namespace LibraryManagement.Model
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Book> Books
+		{
+			get
+			{
+				return this.GetTable<Book>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Customer> Customers
 		{
 			get
@@ -104,19 +115,19 @@ namespace LibraryManagement.Model
 			}
 		}
 		
+		public System.Data.Linq.Table<ReturnHistory> ReturnHistories
+		{
+			get
+			{
+				return this.GetTable<ReturnHistory>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Shelf> Shelfs
 		{
 			get
 			{
 				return this.GetTable<Shelf>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Book> Books
-		{
-			get
-			{
-				return this.GetTable<Book>();
 			}
 		}
 		
@@ -126,6 +137,377 @@ namespace LibraryManagement.Model
 			{
 				return this.GetTable<User>();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Book")]
+	public partial class Book : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _BookID;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _ShelfID;
+		
+		private string _Publisher;
+		
+		private System.Nullable<System.DateTime> _DateOfRelease;
+		
+		private string _Author;
+		
+		private int _Quantity;
+		
+		private decimal _Price;
+		
+		private System.Data.Linq.Binary _Image;
+		
+		private string _Description;
+		
+		private System.Nullable<bool> _IsDeleted;
+		
+		private EntitySet<RentalSlipDetail> _RentalSlipDetails;
+		
+		private EntityRef<Shelf> _Shelf;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBookIDChanging(int value);
+    partial void OnBookIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnShelfIDChanging(System.Nullable<int> value);
+    partial void OnShelfIDChanged();
+    partial void OnPublisherChanging(string value);
+    partial void OnPublisherChanged();
+    partial void OnDateOfReleaseChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateOfReleaseChanged();
+    partial void OnAuthorChanging(string value);
+    partial void OnAuthorChanged();
+    partial void OnQuantityChanging(int value);
+    partial void OnQuantityChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    partial void OnImageChanging(System.Data.Linq.Binary value);
+    partial void OnImageChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnIsDeletedChanging(System.Nullable<bool> value);
+    partial void OnIsDeletedChanged();
+    #endregion
+		
+		public Book()
+		{
+			this._RentalSlipDetails = new EntitySet<RentalSlipDetail>(new Action<RentalSlipDetail>(this.attach_RentalSlipDetails), new Action<RentalSlipDetail>(this.detach_RentalSlipDetails));
+			this._Shelf = default(EntityRef<Shelf>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int BookID
+		{
+			get
+			{
+				return this._BookID;
+			}
+			set
+			{
+				if ((this._BookID != value))
+				{
+					this.OnBookIDChanging(value);
+					this.SendPropertyChanging();
+					this._BookID = value;
+					this.SendPropertyChanged("BookID");
+					this.OnBookIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShelfID", DbType="Int")]
+		public System.Nullable<int> ShelfID
+		{
+			get
+			{
+				return this._ShelfID;
+			}
+			set
+			{
+				if ((this._ShelfID != value))
+				{
+					if (this._Shelf.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnShelfIDChanging(value);
+					this.SendPropertyChanging();
+					this._ShelfID = value;
+					this.SendPropertyChanged("ShelfID");
+					this.OnShelfIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Publisher", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Publisher
+		{
+			get
+			{
+				return this._Publisher;
+			}
+			set
+			{
+				if ((this._Publisher != value))
+				{
+					this.OnPublisherChanging(value);
+					this.SendPropertyChanging();
+					this._Publisher = value;
+					this.SendPropertyChanged("Publisher");
+					this.OnPublisherChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateOfRelease", DbType="Date")]
+		public System.Nullable<System.DateTime> DateOfRelease
+		{
+			get
+			{
+				return this._DateOfRelease;
+			}
+			set
+			{
+				if ((this._DateOfRelease != value))
+				{
+					this.OnDateOfReleaseChanging(value);
+					this.SendPropertyChanging();
+					this._DateOfRelease = value;
+					this.SendPropertyChanged("DateOfRelease");
+					this.OnDateOfReleaseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="NVarChar(50)")]
+		public string Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				if ((this._Author != value))
+				{
+					this.OnAuthorChanging(value);
+					this.SendPropertyChanging();
+					this._Author = value;
+					this.SendPropertyChanged("Author");
+					this.OnAuthorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(10,2) NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
+		public System.Nullable<bool> IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this.OnIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeleted = value;
+					this.SendPropertyChanged("IsDeleted");
+					this.OnIsDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_RentalSlipDetail", Storage="_RentalSlipDetails", ThisKey="BookID", OtherKey="BookID")]
+		public EntitySet<RentalSlipDetail> RentalSlipDetails
+		{
+			get
+			{
+				return this._RentalSlipDetails;
+			}
+			set
+			{
+				this._RentalSlipDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Shelf_Book", Storage="_Shelf", ThisKey="ShelfID", OtherKey="ShelfID", IsForeignKey=true)]
+		public Shelf Shelf
+		{
+			get
+			{
+				return this._Shelf.Entity;
+			}
+			set
+			{
+				Shelf previousValue = this._Shelf.Entity;
+				if (((previousValue != value) 
+							|| (this._Shelf.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Shelf.Entity = null;
+						previousValue.Books.Remove(this);
+					}
+					this._Shelf.Entity = value;
+					if ((value != null))
+					{
+						value.Books.Add(this);
+						this._ShelfID = value.ShelfID;
+					}
+					else
+					{
+						this._ShelfID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Shelf");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_RentalSlipDetails(RentalSlipDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Book = this;
+		}
+		
+		private void detach_RentalSlipDetails(RentalSlipDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Book = null;
 		}
 	}
 	
@@ -425,13 +807,7 @@ namespace LibraryManagement.Model
 		
 		private System.DateTime _DueDate;
 		
-		private System.Nullable<System.DateTime> _ReturnDate;
-		
 		private System.Nullable<decimal> _TotalFee;
-		
-		private System.Nullable<bool> _IsReturnedOnTime;
-		
-		private System.Nullable<bool> _IsBookIntact;
 		
 		private EntitySet<RentalSlipDetail> _RentalSlipDetails;
 		
@@ -449,14 +825,8 @@ namespace LibraryManagement.Model
     partial void OnRentalDateChanged();
     partial void OnDueDateChanging(System.DateTime value);
     partial void OnDueDateChanged();
-    partial void OnReturnDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnReturnDateChanged();
     partial void OnTotalFeeChanging(System.Nullable<decimal> value);
     partial void OnTotalFeeChanged();
-    partial void OnIsReturnedOnTimeChanging(System.Nullable<bool> value);
-    partial void OnIsReturnedOnTimeChanged();
-    partial void OnIsBookIntactChanging(System.Nullable<bool> value);
-    partial void OnIsBookIntactChanged();
     #endregion
 		
 		public RentalSlip()
@@ -550,26 +920,6 @@ namespace LibraryManagement.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReturnDate", DbType="Date")]
-		public System.Nullable<System.DateTime> ReturnDate
-		{
-			get
-			{
-				return this._ReturnDate;
-			}
-			set
-			{
-				if ((this._ReturnDate != value))
-				{
-					this.OnReturnDateChanging(value);
-					this.SendPropertyChanging();
-					this._ReturnDate = value;
-					this.SendPropertyChanged("ReturnDate");
-					this.OnReturnDateChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalFee", DbType="Decimal(10,2)")]
 		public System.Nullable<decimal> TotalFee
 		{
@@ -586,46 +936,6 @@ namespace LibraryManagement.Model
 					this._TotalFee = value;
 					this.SendPropertyChanged("TotalFee");
 					this.OnTotalFeeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsReturnedOnTime", DbType="Bit")]
-		public System.Nullable<bool> IsReturnedOnTime
-		{
-			get
-			{
-				return this._IsReturnedOnTime;
-			}
-			set
-			{
-				if ((this._IsReturnedOnTime != value))
-				{
-					this.OnIsReturnedOnTimeChanging(value);
-					this.SendPropertyChanging();
-					this._IsReturnedOnTime = value;
-					this.SendPropertyChanged("IsReturnedOnTime");
-					this.OnIsReturnedOnTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsBookIntact", DbType="Bit")]
-		public System.Nullable<bool> IsBookIntact
-		{
-			get
-			{
-				return this._IsBookIntact;
-			}
-			set
-			{
-				if ((this._IsBookIntact != value))
-				{
-					this.OnIsBookIntactChanging(value);
-					this.SendPropertyChanging();
-					this._IsBookIntact = value;
-					this.SendPropertyChanged("IsBookIntact");
-					this.OnIsBookIntactChanged();
 				}
 			}
 		}
@@ -726,9 +1036,13 @@ namespace LibraryManagement.Model
 		
 		private decimal _RentalFee;
 		
-		private EntityRef<RentalSlip> _RentalSlip;
+		private System.Nullable<bool> _ReturnStatus;
+		
+		private EntitySet<ReturnHistory> _ReturnHistories;
 		
 		private EntityRef<Book> _Book;
+		
+		private EntityRef<RentalSlip> _RentalSlip;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -744,12 +1058,15 @@ namespace LibraryManagement.Model
     partial void OnQuantityChanged();
     partial void OnRentalFeeChanging(decimal value);
     partial void OnRentalFeeChanged();
+    partial void OnReturnStatusChanging(System.Nullable<bool> value);
+    partial void OnReturnStatusChanged();
     #endregion
 		
 		public RentalSlipDetail()
 		{
-			this._RentalSlip = default(EntityRef<RentalSlip>);
+			this._ReturnHistories = new EntitySet<ReturnHistory>(new Action<ReturnHistory>(this.attach_ReturnHistories), new Action<ReturnHistory>(this.detach_ReturnHistories));
 			this._Book = default(EntityRef<Book>);
+			this._RentalSlip = default(EntityRef<RentalSlip>);
 			OnCreated();
 		}
 		
@@ -861,6 +1178,73 @@ namespace LibraryManagement.Model
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReturnStatus", DbType="Bit")]
+		public System.Nullable<bool> ReturnStatus
+		{
+			get
+			{
+				return this._ReturnStatus;
+			}
+			set
+			{
+				if ((this._ReturnStatus != value))
+				{
+					this.OnReturnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._ReturnStatus = value;
+					this.SendPropertyChanged("ReturnStatus");
+					this.OnReturnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RentalSlipDetail_ReturnHistory", Storage="_ReturnHistories", ThisKey="RentalSlipDetailID", OtherKey="RentalSlipDetailID")]
+		public EntitySet<ReturnHistory> ReturnHistories
+		{
+			get
+			{
+				return this._ReturnHistories;
+			}
+			set
+			{
+				this._ReturnHistories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_RentalSlipDetail", Storage="_Book", ThisKey="BookID", OtherKey="BookID", IsForeignKey=true)]
+		public Book Book
+		{
+			get
+			{
+				return this._Book.Entity;
+			}
+			set
+			{
+				Book previousValue = this._Book.Entity;
+				if (((previousValue != value) 
+							|| (this._Book.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Book.Entity = null;
+						previousValue.RentalSlipDetails.Remove(this);
+					}
+					this._Book.Entity = value;
+					if ((value != null))
+					{
+						value.RentalSlipDetails.Add(this);
+						this._BookID = value.BookID;
+					}
+					else
+					{
+						this._BookID = default(int);
+					}
+					this.SendPropertyChanged("Book");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RentalSlip_RentalSlipDetail", Storage="_RentalSlip", ThisKey="RentalSlipID", OtherKey="RentalSlipID", IsForeignKey=true)]
 		public RentalSlip RentalSlip
 		{
@@ -895,36 +1279,213 @@ namespace LibraryManagement.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_RentalSlipDetail", Storage="_Book", ThisKey="BookID", OtherKey="BookID", IsForeignKey=true)]
-		public Book Book
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ReturnHistories(ReturnHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.RentalSlipDetail = this;
+		}
+		
+		private void detach_ReturnHistories(ReturnHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.RentalSlipDetail = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ReturnHistory")]
+	public partial class ReturnHistory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ReturnHistoryID;
+		
+		private int _RentalSlipDetailID;
+		
+		private System.DateTime _ReturnDate;
+		
+		private int _Quantity;
+		
+		private decimal _AmountPaid;
+		
+		private EntityRef<RentalSlipDetail> _RentalSlipDetail;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnReturnHistoryIDChanging(int value);
+    partial void OnReturnHistoryIDChanged();
+    partial void OnRentalSlipDetailIDChanging(int value);
+    partial void OnRentalSlipDetailIDChanged();
+    partial void OnReturnDateChanging(System.DateTime value);
+    partial void OnReturnDateChanged();
+    partial void OnQuantityChanging(int value);
+    partial void OnQuantityChanged();
+    partial void OnAmountPaidChanging(decimal value);
+    partial void OnAmountPaidChanged();
+    #endregion
+		
+		public ReturnHistory()
+		{
+			this._RentalSlipDetail = default(EntityRef<RentalSlipDetail>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReturnHistoryID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ReturnHistoryID
 		{
 			get
 			{
-				return this._Book.Entity;
+				return this._ReturnHistoryID;
 			}
 			set
 			{
-				Book previousValue = this._Book.Entity;
+				if ((this._ReturnHistoryID != value))
+				{
+					this.OnReturnHistoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._ReturnHistoryID = value;
+					this.SendPropertyChanged("ReturnHistoryID");
+					this.OnReturnHistoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentalSlipDetailID", DbType="Int NOT NULL")]
+		public int RentalSlipDetailID
+		{
+			get
+			{
+				return this._RentalSlipDetailID;
+			}
+			set
+			{
+				if ((this._RentalSlipDetailID != value))
+				{
+					if (this._RentalSlipDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRentalSlipDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._RentalSlipDetailID = value;
+					this.SendPropertyChanged("RentalSlipDetailID");
+					this.OnRentalSlipDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReturnDate", DbType="Date NOT NULL")]
+		public System.DateTime ReturnDate
+		{
+			get
+			{
+				return this._ReturnDate;
+			}
+			set
+			{
+				if ((this._ReturnDate != value))
+				{
+					this.OnReturnDateChanging(value);
+					this.SendPropertyChanging();
+					this._ReturnDate = value;
+					this.SendPropertyChanged("ReturnDate");
+					this.OnReturnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AmountPaid", DbType="Decimal(18,2) NOT NULL")]
+		public decimal AmountPaid
+		{
+			get
+			{
+				return this._AmountPaid;
+			}
+			set
+			{
+				if ((this._AmountPaid != value))
+				{
+					this.OnAmountPaidChanging(value);
+					this.SendPropertyChanging();
+					this._AmountPaid = value;
+					this.SendPropertyChanged("AmountPaid");
+					this.OnAmountPaidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RentalSlipDetail_ReturnHistory", Storage="_RentalSlipDetail", ThisKey="RentalSlipDetailID", OtherKey="RentalSlipDetailID", IsForeignKey=true)]
+		public RentalSlipDetail RentalSlipDetail
+		{
+			get
+			{
+				return this._RentalSlipDetail.Entity;
+			}
+			set
+			{
+				RentalSlipDetail previousValue = this._RentalSlipDetail.Entity;
 				if (((previousValue != value) 
-							|| (this._Book.HasLoadedOrAssignedValue == false)))
+							|| (this._RentalSlipDetail.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Book.Entity = null;
-						previousValue.RentalSlipDetails.Remove(this);
+						this._RentalSlipDetail.Entity = null;
+						previousValue.ReturnHistories.Remove(this);
 					}
-					this._Book.Entity = value;
+					this._RentalSlipDetail.Entity = value;
 					if ((value != null))
 					{
-						value.RentalSlipDetails.Add(this);
-						this._BookID = value.BookID;
+						value.ReturnHistories.Add(this);
+						this._RentalSlipDetailID = value.RentalSlipDetailID;
 					}
 					else
 					{
-						this._BookID = default(int);
+						this._RentalSlipDetailID = default(int);
 					}
-					this.SendPropertyChanged("Book");
+					this.SendPropertyChanged("RentalSlipDetail");
 				}
 			}
 		}
@@ -1085,377 +1646,6 @@ namespace LibraryManagement.Model
 		{
 			this.SendPropertyChanging();
 			entity.Shelf = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Book")]
-	public partial class Book : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _BookID;
-		
-		private string _Name;
-		
-		private System.Nullable<int> _ShelfID;
-		
-		private string _Publisher;
-		
-		private System.Nullable<System.DateTime> _DateOfRelease;
-		
-		private string _Author;
-		
-		private int _Quantity;
-		
-		private decimal _Price;
-		
-		private System.Data.Linq.Binary _Image;
-		
-		private System.Nullable<bool> _IsDeleted;
-		
-		private string _Description;
-		
-		private EntitySet<RentalSlipDetail> _RentalSlipDetails;
-		
-		private EntityRef<Shelf> _Shelf;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnBookIDChanging(int value);
-    partial void OnBookIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnShelfIDChanging(System.Nullable<int> value);
-    partial void OnShelfIDChanged();
-    partial void OnPublisherChanging(string value);
-    partial void OnPublisherChanged();
-    partial void OnDateOfReleaseChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateOfReleaseChanged();
-    partial void OnAuthorChanging(string value);
-    partial void OnAuthorChanged();
-    partial void OnQuantityChanging(int value);
-    partial void OnQuantityChanged();
-    partial void OnPriceChanging(decimal value);
-    partial void OnPriceChanged();
-    partial void OnImageChanging(System.Data.Linq.Binary value);
-    partial void OnImageChanged();
-    partial void OnIsDeletedChanging(System.Nullable<bool> value);
-    partial void OnIsDeletedChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    #endregion
-		
-		public Book()
-		{
-			this._RentalSlipDetails = new EntitySet<RentalSlipDetail>(new Action<RentalSlipDetail>(this.attach_RentalSlipDetails), new Action<RentalSlipDetail>(this.detach_RentalSlipDetails));
-			this._Shelf = default(EntityRef<Shelf>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int BookID
-		{
-			get
-			{
-				return this._BookID;
-			}
-			set
-			{
-				if ((this._BookID != value))
-				{
-					this.OnBookIDChanging(value);
-					this.SendPropertyChanging();
-					this._BookID = value;
-					this.SendPropertyChanged("BookID");
-					this.OnBookIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShelfID", DbType="Int")]
-		public System.Nullable<int> ShelfID
-		{
-			get
-			{
-				return this._ShelfID;
-			}
-			set
-			{
-				if ((this._ShelfID != value))
-				{
-					if (this._Shelf.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnShelfIDChanging(value);
-					this.SendPropertyChanging();
-					this._ShelfID = value;
-					this.SendPropertyChanged("ShelfID");
-					this.OnShelfIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Publisher", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string Publisher
-		{
-			get
-			{
-				return this._Publisher;
-			}
-			set
-			{
-				if ((this._Publisher != value))
-				{
-					this.OnPublisherChanging(value);
-					this.SendPropertyChanging();
-					this._Publisher = value;
-					this.SendPropertyChanged("Publisher");
-					this.OnPublisherChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateOfRelease", DbType="Date")]
-		public System.Nullable<System.DateTime> DateOfRelease
-		{
-			get
-			{
-				return this._DateOfRelease;
-			}
-			set
-			{
-				if ((this._DateOfRelease != value))
-				{
-					this.OnDateOfReleaseChanging(value);
-					this.SendPropertyChanging();
-					this._DateOfRelease = value;
-					this.SendPropertyChanged("DateOfRelease");
-					this.OnDateOfReleaseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Author
-		{
-			get
-			{
-				return this._Author;
-			}
-			set
-			{
-				if ((this._Author != value))
-				{
-					this.OnAuthorChanging(value);
-					this.SendPropertyChanging();
-					this._Author = value;
-					this.SendPropertyChanged("Author");
-					this.OnAuthorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
-		public int Quantity
-		{
-			get
-			{
-				return this._Quantity;
-			}
-			set
-			{
-				if ((this._Quantity != value))
-				{
-					this.OnQuantityChanging(value);
-					this.SendPropertyChanging();
-					this._Quantity = value;
-					this.SendPropertyChanged("Quantity");
-					this.OnQuantityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(10,2) NOT NULL")]
-		public decimal Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Image
-		{
-			get
-			{
-				return this._Image;
-			}
-			set
-			{
-				if ((this._Image != value))
-				{
-					this.OnImageChanging(value);
-					this.SendPropertyChanging();
-					this._Image = value;
-					this.SendPropertyChanged("Image");
-					this.OnImageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit")]
-		public System.Nullable<bool> IsDeleted
-		{
-			get
-			{
-				return this._IsDeleted;
-			}
-			set
-			{
-				if ((this._IsDeleted != value))
-				{
-					this.OnIsDeletedChanging(value);
-					this.SendPropertyChanging();
-					this._IsDeleted = value;
-					this.SendPropertyChanged("IsDeleted");
-					this.OnIsDeletedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(500)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Book_RentalSlipDetail", Storage="_RentalSlipDetails", ThisKey="BookID", OtherKey="BookID")]
-		public EntitySet<RentalSlipDetail> RentalSlipDetails
-		{
-			get
-			{
-				return this._RentalSlipDetails;
-			}
-			set
-			{
-				this._RentalSlipDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Shelf_Book", Storage="_Shelf", ThisKey="ShelfID", OtherKey="ShelfID", IsForeignKey=true)]
-		public Shelf Shelf
-		{
-			get
-			{
-				return this._Shelf.Entity;
-			}
-			set
-			{
-				Shelf previousValue = this._Shelf.Entity;
-				if (((previousValue != value) 
-							|| (this._Shelf.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Shelf.Entity = null;
-						previousValue.Books.Remove(this);
-					}
-					this._Shelf.Entity = value;
-					if ((value != null))
-					{
-						value.Books.Add(this);
-						this._ShelfID = value.ShelfID;
-					}
-					else
-					{
-						this._ShelfID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Shelf");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_RentalSlipDetails(RentalSlipDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = this;
-		}
-		
-		private void detach_RentalSlipDetails(RentalSlipDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Book = null;
 		}
 	}
 	

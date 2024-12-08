@@ -44,5 +44,17 @@ namespace LibraryManagement.Properties {
                 return ((string)(this["LibraryManagementConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-TN4CIUV\\SQLEXPRESS;Initial Catalog=LibraryManagement;Persist " +
+            "Security Info=True;User ID=sa;Password=123456789;Encrypt=True;TrustServerCertifi" +
+            "cate=True")]
+        public string LibraryManagementConnectionString2 {
+            get {
+                return ((string)(this["LibraryManagementConnectionString2"]));
+            }
+        }
     }
 }

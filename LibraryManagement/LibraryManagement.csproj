@@ -50,13 +50,18 @@
   <ItemGroup>
     <Compile Include="Controller\AuthController.cs" />
     <Compile Include="Controller\BookController.cs" />
+    <Compile Include="Controller\CustomerController.cs" />
+    <Compile Include="Controller\rentalSlipController.cs" />
+    <Compile Include="Controller\rentalSlipDetailController.cs" />
+    <Compile Include="Controller\ReturnBookController.cs" />
+    <Compile Include="Controller\ReturnHistoryController.cs" />
+    <Compile Include="Controller\SearchBookController.cs" />
+    <Compile Include="Controller\ShelfController.cs" />
+    <Compile Include="Controller\StatisticalController.cs" />
     <Compile Include="Controller\UserController.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DTO\RecentBorrowBooks.cs" />
+    <Compile Include="DTO\RentalSlipOfCustomer.cs" />
+    <Compile Include="DTO\SeacrchBookResponse.cs" />
     <Compile Include="Model\Database.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,11 +83,35 @@
     <Compile Include="View\Admin\Form_Book.Designer.cs">
       <DependentUpon>Form_Book.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\Form_Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\Form_Customer.Designer.cs">
+      <DependentUpon>Form_Customer.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\Form_DashBoard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\Admin\Form_DashBoard.Designer.cs">
       <DependentUpon>Form_DashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Form_Shelf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\Form_Shelf.Designer.cs">
+      <DependentUpon>Form_Shelf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Form_statistical.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Admin\Form_statistical.Designer.cs">
+      <DependentUpon>Form_statistical.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Employee\Form_Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Employee\Form_Customer.Designer.cs">
+      <DependentUpon>Form_Customer.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Employee\Form_Employee.cs">
       <SubType>Form</SubType>
@@ -96,17 +125,17 @@
     <Compile Include="View\Employee\Form_ReturnBooks.Designer.cs">
       <DependentUpon>Form_ReturnBooks.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Employee\Form_Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Employee\Form_Search.Designer.cs">
+      <DependentUpon>Form_Search.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Form_Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\Form_Login.Designer.cs">
       <DependentUpon>Form_Login.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Form_SignUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Form_SignUp.Designer.cs">
-      <DependentUpon>Form_SignUp.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\Form_User.cs">
       <SubType>Form</SubType>
@@ -129,8 +158,20 @@
     <EmbeddedResource Include="View\Admin\Form_Book.resx">
       <DependentUpon>Form_Book.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\Form_Customer.resx">
+      <DependentUpon>Form_Customer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Admin\Form_DashBoard.resx">
       <DependentUpon>Form_DashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\Form_Shelf.resx">
+      <DependentUpon>Form_Shelf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Admin\Form_statistical.resx">
+      <DependentUpon>Form_statistical.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Employee\Form_Customer.resx">
+      <DependentUpon>Form_Customer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Employee\Form_Employee.resx">
       <DependentUpon>Form_Employee.cs</DependentUpon>
@@ -138,11 +179,11 @@
     <EmbeddedResource Include="View\Employee\Form_ReturnBooks.resx">
       <DependentUpon>Form_ReturnBooks.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Employee\Form_Search.resx">
+      <DependentUpon>Form_Search.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Form_Login.resx">
       <DependentUpon>Form_Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Form_SignUp.resx">
-      <DependentUpon>Form_SignUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Admin\Form_User.resx">
       <DependentUpon>Form_User.cs</DependentUpon>
@@ -171,5 +212,6 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
