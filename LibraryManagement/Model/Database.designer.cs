@@ -667,7 +667,7 @@ namespace LibraryManagement.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(11) NOT NULL", CanBeNull=false)]
 		public string PhoneNumber
 		{
 			get

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManagement.View.Employee;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,9 @@ namespace LibraryManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.Run(new Form_Admin());
+
         }
     }
 }
