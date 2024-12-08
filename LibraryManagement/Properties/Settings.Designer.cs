@@ -12,7 +12,7 @@ namespace LibraryManagement.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -37,8 +37,13 @@ namespace LibraryManagement.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-TN4CIUV\\SQLEXPRESS;Initial Catalog=LibraryManagement;Persist " +
+            "Security Info=True;User ID=sa;Password=123456789;TrustServerCertificate=True")]
+
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=THANHNGUYEN-PC\\SQLEXPRESS;Initial Catalog=newLibraryManagement;Persis" +
             "t Security Info=True;User ID=sa;Password=123456")]
+
         public string LibraryManagementConnectionString1 {
             get {
                 return ((string)(this["LibraryManagementConnectionString1"]));
@@ -48,8 +53,14 @@ namespace LibraryManagement.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-TN4CIUV\\SQLEXPRESS;Initial Catalog=LibraryManagement;Persist " +
+            "Security Info=True;User ID=sa;Password=123456789;Encrypt=True;TrustServerCertifi" +
+            "cate=True")]
+
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=THANHNGUYEN-PC\\SQLEXPRESS;Initial Catalog=LibraryManagement;Persist S" +
             "ecurity Info=True;User ID=sa;Password=123456")]
+
         public string LibraryManagementConnectionString2 {
             get {
                 return ((string)(this["LibraryManagementConnectionString2"]));
